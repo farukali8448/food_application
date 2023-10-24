@@ -26,7 +26,7 @@ let userSchema = Joi.object({
 
 let signUp = async (req, res, next) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     let { name, email, password, location } = req.body;
     let { value, error } = userSchema.validate({name,location,email,password});
 
