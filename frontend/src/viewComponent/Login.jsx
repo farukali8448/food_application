@@ -25,8 +25,8 @@ const handleSubmit = async (e) => {
   const json = await response.json();
   console.log(json)
   if (!json.success) {
-    // localStorage.setItem("Email",credentials.email)
-   // localStorage.setItem("token",json.token)
+    //localStorage.setItem("Email",credentials.email)
+    localStorage.setItem("token",json.token)
     console.log(localStorage.getItem("token"))
      navigate("/")
   }

@@ -1,33 +1,71 @@
-import React from 'react'
-import {Link} from "react-router-dom"
+import React from "react";
+import { Link,useNavigate } from "react-router-dom";
+// import Badge from 'react-bootstrap/Badge'
 
 const Navbar = () => {
+
+  const navigate=useNavigate();
+
+  const handlelogout=()=>{
+     localStorage.removeItem("token");
+     navigate("/login")
+  }
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-success">
-  <div className="container-fluid">
-    <Link className="navbar-brand fs-1 fst-italic" to="/">GoodFood</Link>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link className="nav-link" aria-current="page" to="/">Home</Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/login">Login</Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/signup">Signup</Link>
-        </li>
-       
-      </ul>
-    </div>
-  </div>
-</nav>
-</div>
-  )
-}
+        <div className="container-fluid">
+          <Link className="navbar-brand fs-1 fst-italic" to="/">
+            GoodFood
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav me-auto mb-2">
+              <li className="nav-item">
+                <Link className="nav-link active fs-5" aria-current="page" to="/">
+                  Home
+                </Link>
+              </li>
 
-export default Navbar
+              {(localStorage.getItem("token"))?
+              <li className="nav-item">
+              <Link className="nav-link active fs-5" aria-current="page" to="/">
+                My orders 
+              </Link>
+            </li>:""}
+              </ul>
+             
+              {(!localStorage.getItem("token"))?
+              <div className="d-flex">
+                <Link className="btn bg-white text-success mx-1 " to="/login">Login</Link>
+                <Link className="btn bg-white text-success mx-1" to="/signup">Signup</Link>
+              </div>
+              :
+              <div>
+                <div className="btn bg-white text-success mx-2 ">
+                  Cart  
+                  <sup className="text-danger mx-1">2</sup>
+                  {/* <Badge pill bg="danger">2</Badge> */}
+                  </div>
+                <div className="btn bg-white text-danger mx-2 " onClick={handlelogout}>Logout</div>
+              </div>
+              }
+
+          </div>
+        </div>
+      </nav>
+    </div>
+  );
+};
+
+export default Navbar;
