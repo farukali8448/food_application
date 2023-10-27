@@ -2,7 +2,7 @@ import React,{useEffect,useState} from "react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import Card from "../Components/Card";
-
+// import Cart from "./Cart";
 const Home = () => {
 
   const [search,setSearch]=useState('')
@@ -36,6 +36,7 @@ const fetchItems=async()=>{
   return (
     <div >
       <div><Navbar /></div>
+      {/* <div><Cart/></div> */}
 
       <div>
       <div

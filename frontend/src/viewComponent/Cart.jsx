@@ -1,4 +1,6 @@
 import React from 'react'
+import trash from '../trash.svg'
+import { useCart,useDispatchCart } from '../Components/CardAddItem';
 
 const Cart = () => {
 
@@ -19,7 +21,7 @@ const Cart = () => {
        
        <div className='container m-auto mt-5 table-responsive table-responsive-sm table-responsive-md'>
         <table className='table table-hover'>
-            <thead className='text-success fs-4'>
+            <thead className='text-success fs-5'>
                 <tr>
                     <th scope='col'>#</th>
                     <th scope='col'>Name</th>
@@ -34,10 +36,12 @@ const Cart = () => {
                         <tr>
                             <th scope='row'>{index+1}</th>
                             <td>{food.name}</td>
-                            <td>{food.Qnty}</td>
+                            <td>{food.qty}</td>
                             <td>{food.size}</td>
                             <td>{food.price}</td>
-                            <td><button type='button' className='btn p-0'><img src={trash} alt="delete" onClick={()=>{dispatch({type:"REMOVE",index:index})}}/></button></td>
+                         <td>
+                            <button type='button' className='btn'><img src={trash} alt="delete" style={{height:"40px",width:"50px"}} onClick={()=>{dispatch({type:"REMOVE",index:index})}}/></button>
+                            </td> 
                         </tr>
                 ))
                 }
@@ -45,7 +49,7 @@ const Cart = () => {
 
         </table>
         <div><h1 className='fs-2'>Total Price: {totalPrice}/-</h1></div>
-        <div><button className='btn bg-success mt-5' onClick={handleCheckOut}>Check Out</button></div>
+        <div><button className='btn bg-success mt-5' >Check Out</button></div>
        </div>
     </div>
   )
